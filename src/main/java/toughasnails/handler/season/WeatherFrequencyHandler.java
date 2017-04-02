@@ -49,7 +49,7 @@ public class WeatherFrequencyHandler
             {
             	if (world.getWorldInfo().isThundering())
                 {
-                    world.getWorldInfo().setThundering(false);;
+                    world.getWorldInfo().setThundering(false);
                 }
                 if (!world.getWorldInfo().isRaining() && world.getWorldInfo().getRainTime() > 36000)
                 {

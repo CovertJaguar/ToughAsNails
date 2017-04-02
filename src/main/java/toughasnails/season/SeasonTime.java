@@ -10,13 +10,14 @@ package toughasnails.season;
 import toughasnails.api.season.ISeasonData;
 import toughasnails.api.season.Season;
 import toughasnails.api.season.Season.SubSeason;
+import toughasnails.util.TimeUtil;
 
 public final class SeasonTime implements ISeasonData
 {
     /** Not configurable, the duration of a single day*/
-    public static final int DAY_TICKS = 24000;
+    public static final int DAY_TICKS = TimeUtil.I.TICKS_TOTAL;
     /** The duration of a sub season in days*/
-    public static final int SUB_SEASON_DURATION = 5;
+    public static final int SUB_SEASON_DURATION = 68;
     public static final int SEASON_TICKS = DAY_TICKS * SUB_SEASON_DURATION * 3;
     public static final int TOTAL_CYCLE_TICKS = (DAY_TICKS * SUB_SEASON_DURATION) * SubSeason.values().length;
     

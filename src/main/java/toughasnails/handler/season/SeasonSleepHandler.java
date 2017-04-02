@@ -16,6 +16,8 @@ import toughasnails.api.config.SyncedConfig;
 import toughasnails.api.config.GameplayOption;
 import toughasnails.season.SeasonSavedData;
 
+import static toughasnails.util.TimeUtil.I.*;
+
 public class SeasonSleepHandler {
     @SubscribeEvent
     public void onWorldTick(TickEvent.WorldTickEvent event) {
@@ -26,7 +28,8 @@ public class SeasonSleepHandler {
             // Called before all players are awoken for the next day
             if (world.areAllPlayersAsleep()) {
                 SeasonSavedData seasonData = SeasonHandler.getSeasonSavedData(world);
-                long timeDiff = 24000L - ((world.getWorldInfo().getWorldTime() + 24000L) % 24000L);
+                long timeDiff = TICKS_TOTAL - (world.getWorldInfo().getWorldTime() % TICKS_TOTAL);
+                //long timeDiff = 24000L - ((world.getWorldInfo().getWorldTime() + 24000L) % 24000L);
                 seasonData.seasonCycleTicks += timeDiff;
                 seasonData.markDirty();
                 SeasonHandler.sendSeasonUpdate(world);
