@@ -47,7 +47,7 @@ public class TimeModifier extends TemperatureModifier
             timeNorm = (-Math.abs(timeOfDay - TICKS_TO_NOON) + TICKS_TO_NOON) / TICKS_TO_NOON;
         } else {
             //night time
-            timeNorm = (-Math.abs(timeOfDay - TICKS_IN_DAY - TICKS_TO_MIDNIGHT) + TICKS_TO_MIDNIGHT) / TICKS_TO_MIDNIGHT;
+            timeNorm = (Math.abs(timeOfDay - TICKS_IN_DAY - TICKS_TO_MIDNIGHT) - TICKS_TO_MIDNIGHT) / TICKS_TO_MIDNIGHT;
         }
         //float timeNormOld = (-Math.abs(((worldTime + 6000) % 24000.0F) - 12000.0F) + 6000.0F) / 6000.0F;
 
