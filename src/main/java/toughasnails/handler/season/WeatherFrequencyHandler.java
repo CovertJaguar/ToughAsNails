@@ -1,8 +1,8 @@
 /*******************************************************************************
  * Copyright 2016, the Biomes O' Plenty Team
- * 
+ *
  * This work is licensed under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International Public License.
- * 
+ *
  * To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/4.0/.
  ******************************************************************************/
 package toughasnails.handler.season;
@@ -17,7 +17,7 @@ import toughasnails.api.season.Season;
 import toughasnails.api.season.SeasonHelper;
 import toughasnails.api.config.GameplayOption;
 
-public class WeatherFrequencyHandler 
+public class WeatherFrequencyHandler
 {
     @SubscribeEvent
     public void onWorldTick(WorldTickEvent event)
@@ -26,7 +26,7 @@ public class WeatherFrequencyHandler
         {
             World world = event.world;
             Season season = SeasonHelper.getSeasonData(world).getSubSeason().getSeason();
-            
+
             //During winter, the absolute maximum delay between rain/thunder should be 30 mins, unlike
             //the standard 160 minutes. We only wish to modify the time between rain/thunder occurring, not
             //their duration.
@@ -40,9 +40,9 @@ public class WeatherFrequencyHandler
             }
             else if (season == Season.SUMMER)
             {
-                if (!world.getWorldInfo().isThundering() && world.getWorldInfo().getThunderTime() > 36000)
+                if (world.getTotalWorldTime() % 4 == 0 && !world.getWorldInfo().isRaining() && world.getWorldInfo().getRainTime() > 0)
                 {
-                    world.getWorldInfo().setThunderTime(world.rand.nextInt(24000) + 12000);
+                	world.getWorldInfo().setRainTime(world.getWorldInfo().getRainTime() + 1);
                 }
             }
             else if (season == Season.WINTER)
